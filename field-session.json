@@ -1,0 +1,278 @@
+{
+  "inventory": {
+    "shift": "N2",
+    "minimum_wh": 420,
+    "allowed_temperature_c": [
+      2,
+      38
+    ],
+    "battery": {
+      "bx": {
+        "model": "V",
+        "capacity_wh": 460,
+        "measured": 0,
+        "valid_until": 70
+      },
+      "by": {
+        "model": "V",
+        "capacity_wh": 510,
+        "measured": 0,
+        "valid_until": 50
+      },
+      "bz": {
+        "model": "V",
+        "capacity_wh": 398,
+        "measured": 2,
+        "valid_until": 65
+      },
+      "old": {
+        "model": "V"
+      }
+    },
+    "authorizations": [
+      {
+        "id": "offline-9",
+        "rider": "r7",
+        "cabs": [
+          "a",
+          "b"
+        ],
+        "cells": [
+          "a1",
+          "b2",
+          "b3"
+        ],
+        "shots": 1,
+        "valid": [
+          5,
+          44
+        ]
+      }
+    ],
+    "expected_battery_mass_g": [
+      6350,
+      7800
+    ]
+  },
+  "events": [
+    [
+      0,
+      "a",
+      "cell",
+      {
+        "cell": "a1",
+        "boot": "a-1",
+        "seq": 1,
+        "when": 0,
+        "latch": "closed",
+        "mass_g": 0,
+        "nearby": [
+          "bx"
+        ],
+        "contact": false
+      }
+    ],
+    [
+      1,
+      "b",
+      "cell",
+      {
+        "cell": "b2",
+        "boot": "b-1",
+        "seq": 1,
+        "when": 1,
+        "latch": "closed",
+        "mass_g": 7120,
+        "nearby": [
+          "bx",
+          "by"
+        ],
+        "temperature_c": 29,
+        "contact": true
+      }
+    ],
+    [
+      2,
+      "b",
+      "cell",
+      {
+        "cell": "b3",
+        "boot": "b-1",
+        "seq": 2,
+        "when": 2,
+        "latch": "closed",
+        "mass_g": 7000,
+        "nearby": [
+          "by"
+        ],
+        "temperature_c": 24,
+        "contact": true
+      }
+    ],
+    [
+      6,
+      "desk",
+      "swap",
+      {
+        "id": "sw-7",
+        "rider": "r7",
+        "plan_model": "V",
+        "return": "old",
+        "authorization": "offline-9"
+      }
+    ],
+    [
+      7,
+      "a",
+      "disconnect",
+      {}
+    ],
+    [
+      9,
+      "a",
+      "cell",
+      {
+        "cell": "a1",
+        "boot": "a-1",
+        "seq": 3,
+        "when": 9,
+        "latch": "closed",
+        "mass_g": 7210,
+        "nearby": [
+          "old"
+        ],
+        "contact": true,
+        "swap": "sw-7"
+      }
+    ],
+    [
+      12,
+      "b",
+      "cell",
+      {
+        "cell": "b2",
+        "boot": "b-1",
+        "seq": 3,
+        "when": 12,
+        "latch": "unknown",
+        "nearby": [
+          "bx"
+        ],
+        "contact": false,
+        "swap": "sw-7"
+      }
+    ],
+    [
+      13,
+      "rider",
+      "alternate",
+      {
+        "swap": "sw-7",
+        "requested_cell": "b3"
+      }
+    ],
+    [
+      15,
+      "b",
+      "alternate_window",
+      {
+        "swap": "sw-7",
+        "cell": "b3",
+        "latch_before": "closed",
+        "expires": 18
+      }
+    ],
+    [
+      16,
+      "b",
+      "cell",
+      {
+        "cell": "b3",
+        "boot": "b-1",
+        "seq": 4,
+        "when": 16,
+        "latch": "closed",
+        "mass_g": 0,
+        "nearby": [],
+        "contact": false,
+        "swap": "sw-7"
+      }
+    ],
+    [
+      17,
+      "rider",
+      "receipt",
+      {
+        "id": "rec-7",
+        "swap": "sw-7",
+        "auth": "offline-9",
+        "cell": "b3",
+        "battery": "by",
+        "when": 16
+      }
+    ],
+    [
+      19,
+      "b",
+      "reconnect",
+      {
+        "boot": "b-2"
+      }
+    ],
+    [
+      19,
+      "b",
+      "cell",
+      {
+        "cell": "b2",
+        "boot": "b-2",
+        "seq": 3,
+        "when": 18,
+        "latch": "closed",
+        "mass_g": 0,
+        "nearby": [],
+        "contact": false
+      }
+    ],
+    [
+      21,
+      "field",
+      "receipt",
+      {
+        "id": "rec-9",
+        "swap": "suggested-8",
+        "auth": "offline-9",
+        "cell": "b2",
+        "battery": "bx",
+        "when": 15
+      }
+    ],
+    [
+      24,
+      "b",
+      "timeline",
+      {
+        "cell": "b2",
+        "boot": "b-1",
+        "seq": 5,
+        "when": 15,
+        "latch": "open",
+        "mass_g": 0,
+        "nearby": [],
+        "contact": false,
+        "swap": "suggested-8"
+      }
+    ],
+    [
+      25,
+      "desk",
+      "inspect",
+      {
+        "swaps": [
+          "sw-7",
+          "suggested-8"
+        ]
+      }
+    ]
+  ]
+}
